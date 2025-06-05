@@ -1,10 +1,9 @@
 import React from 'react'
 
-export default function Page() {
+export default function Dashboard() {
   return (
     <div>
-      <h1> home</h1>
+      DashboardPAGE
     </div>
   )
 }
-
