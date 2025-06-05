@@ -58,3 +58,12 @@ export default function Template({children}:{children:React.ReactNode}) {
 与layout的关系是：template嵌套在layout中  
 两者之间的差异：layout在导航时不会重新渲染（会保留状态），template在导航时会重新渲染（不会保留状态）
 
+## usePathname  获取导航url的数据
+active nav links  由于usePathname()是一个客户端钩子，因此需要将导航连接提取到客户端组件中，该组件可以导入你的布局和模版
+
+```jsx
+ <Link rel="stylesheet" href="/dashboard" className={`'link' ${pathname === '/dashboard' ? 'active' : ''}`} >跳转到dashboard</Link>
+
+      <br/>
+      <Link rel="stylesheet" href="/dashboard/blog" className={`'link' ${pathname === '/dashboard/blog' ? 'active' : ''}`}>blog</Link>
+```
