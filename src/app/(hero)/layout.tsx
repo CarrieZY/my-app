@@ -1,15 +1,15 @@
-import './globals.css'; 
+
 import { ReactNode } from "react"
+import Head from "@/components/header";
 export default function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" >
-      <body>
+    <div>
+        <Head></Head>
         {children}
-      </body>
-    </html>
+      </div>
   );
 }
