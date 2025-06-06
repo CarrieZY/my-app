@@ -67,3 +67,54 @@ active nav links  由于usePathname()是一个客户端钩子，因此需要将�
       <br/>
       <Link rel="stylesheet" href="/dashboard/blog" className={`'link' ${pathname === '/dashboard/blog' ? 'active' : ''}`}>blog</Link>
 ```
+
+
+## MetaData的使用
+基础用法：
+```jsx
+// app/page.tsx 或 app/about/page.tsx
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '首页', // 页面标题
+  description: '这是网站的首页', // 页面描述
+};
+
+export default function Page() {
+  return <main>页面内容</main>;
+}
+```
+动态用法：用api中获取数据
+```jsx
+// app/blog/[id]/page.tsx
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const post = await fetch(`/api/posts/${params.id}`).then(res => res.json());
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      images: [post.imageUrl],
+    },
+  };
+}
+
+export default function BlogPost() {
+  // 页面内容...
+}
+```
+## NotFound 的分类和触发规律
+
+分类 ：
+一种是存在于app目录下  全局的   访问一个不存在的路径会触发
+另一种是存在于app/[...path]子目录下  局部的  只有通过notFound的函数才会触发，如果找不到局部的notFound函数，则会触发全局的notFound函数
+
+测试：
+- 第一种 ，在app/下创建一个全局not-found.tsx文件，访问一个不存在的路径，会显示not-found.tsx的内容
+注意点：文件名必须是not-found.tsx，不能是notfound.tsx
+- 第二种，在app/test下创建一个局部的not-found.tsx文件和page.tsx文件，在page.tsx中调用notFound函数，会显示局部定义的not-found.tsx的内容，如果找不到局部的not-found.tsx文件，则会显示全局的not-found.tsx的内容
+
+##  初步实现4040页面
+在https://www.creative-tim.com/网站上搜索404页面，找到一个免费的404页面，下载下来，放到app目录下，命名为not-found.tsx，当访问一个不存在的路径时，就会显示这个404页面
