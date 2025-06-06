@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Hero from '@/components/hero'
 import performanceSrc from '/public/performance.jpg'
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 
 export const metadata: Metadata = {
     title: 'My Website',
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <div>
-            <Hero imgData={performanceSrc} alt='32132' title='performance' />
+            <Hero imgData={performanceSrc} alt='32132' title='this is performance' />
         </div>
     )
 }

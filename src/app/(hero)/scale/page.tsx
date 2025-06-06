@@ -5,7 +5,7 @@ import scaleSrc from '/public/scale.jpg'
 export default function Page() {
   return (
     <div>
-      <Hero  imgData={scaleSrc} alt='scale' title='scale'/>
+      <Hero  imgData={scaleSrc} alt='scale' title='this is scale'/>
     </div>
   )
 }

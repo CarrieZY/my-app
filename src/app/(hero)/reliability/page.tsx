@@ -7,7 +7,7 @@ import reliabilitySrc from '/public/reliability.jpg'
 export default function Page() {
     return (
         <div>
-            <Hero imgData={reliabilitySrc} alt='reliability' title='reliability' />
+            <Hero imgData={reliabilitySrc} alt='reliability' title='this is reliability' />
         </div>
     )
 }
